@@ -1,32 +1,15 @@
 class_name KnightChessPiece
 extends ChessPiece
 
-const WHITE_START_POSITION = Vector2(1, 0)
-const BLACK_START_POSITION = Vector2(6, 7)
+const MOVE_OFFSETS = [Vector2(-2, 1), Vector2(-1, 2), Vector2(1, 2), Vector2(2, 1), Vector2(2, -1), Vector2(1, -2), Vector2(-1, -2), Vector2(-2, -1)] # Knight's possible moves
 
-const MOVEMENT_OFFSETS = [
-	Vector2(1, 2),
-	Vector2(1, -2),
-	Vector2(-1, 2),
-	Vector2(-1, -2),
-	Vector2(2, 1),
-	Vector2(2, -1),
-	Vector2(-2, 1),
-	Vector2(-2, -1),
-]
+var team = 0
 
-func _ready():
-	if get_parent().has_method("getTeam"):
-		var parent_team = get_parent().getTeam()
-		if parent_team == "white":
-			setPiecePosition(WHITE_START_POSITION.x, WHITE_START_POSITION.y)
-		else:
-			setPiecePosition(BLACK_START_POSITION.x, BLACK_START_POSITION.y)
-	setPieceTexture(load("res://Sprites/pieces/knight-strengths.jpg"))
-
-func _on_piece_clicked():
-	for offset in MOVEMENT_OFFSETS:
-		var newX = position.x + offset.x
-		var newY = position.y + offset.y
-		if newX >= 0 and newX < 8 and newY >= 0 and newY < 8:
-			print("Knight can move to:", newX, newY)
+func calculate_moves():
+	possibleSquares = []
+	for _offset in MOVE_OFFSETS:
+		var targetX = currentGridPosition.x + _offset.x
+		var targetY = currentGridPosition.y + _offset.y
+		if targetX >= 0 and targetX < 8 and targetY >= 0 and targetY < 8:
+			possibleSquares.append(Vector2i(targetX, targetY))
+	return possibleSquares

@@ -1,30 +1,19 @@
-class_name BishopChessPiece
-extends ChessPiece
+class_name BishopChessPiece extends ChessPiece
 
-const WHITE_START_POSITION = Vector2(2, 0)
-const BLACK_START_POSITION = Vector2(5, 7)
+const WHITE_MOVE_DIRECTION = Vector2(0, 1)
+const BLACK_MOVE_DIRECTION = Vector2(0, -1)
+const MOVE_OFFSETS = [Vector2(-1, 1), Vector2(1, 1), Vector2(-1, -1), Vector2(1, -1)] # Diagonal moves
 
-const MOVEMENT_OFFSETS = [
-	Vector2(1, 1),
-	Vector2(-1, 1),
-	Vector2(1, -1),
-	Vector2(-1, -1)
-]
+var team = 0
 
-func _ready():
-	if get_parent().has_method("getTeam"):
-		var parent_team = get_parent().getTeam()
-		if parent_team == "white":
-			setPiecePosition(WHITE_START_POSITION.x, WHITE_START_POSITION.y)
-		else:
-			setPiecePosition(BLACK_START_POSITION.x, BLACK_START_POSITION.y)
-	setPieceTexture(load("res://Sprites/pieces/bishop-strengths.jpg"))
-
-func _on_piece_clicked():
-	for offset in MOVEMENT_OFFSETS:
-		var newX = position.x + offset.x
-		var newY = position.y + offset.y
-		while newX >= 0 and newX < 8 and newY >= 0 and newY < 8:
-			print("Bishop can move to:", newX, newY)
-			newX += offset.x
-			newY += offset.y
+func calculate_moves():
+	possibleSquares = []
+	var direction = WHITE_MOVE_DIRECTION if team == 0 else BLACK_MOVE_DIRECTION
+	for _offset in MOVE_OFFSETS:
+		var newPosX = currentGridPosition.x + _offset.x
+		var newPosY = currentGridPosition.y + _offset.y * direction.y
+		while newPosX >= 0 and newPosX < 8 and newPosY >= 0 and newPosY < 8:
+			possibleSquares.append(Vector2i(newPosX, newPosY))
+			newPosX += _offset.x
+			newPosY += _offset.y * direction.y
+	return possibleSquares

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7pysy4kdyr4b"]
+
+[ext_resource type="PackedScene" uid="uid://cur62qcpqs2u7" path="res://prefabs/Piece.tscn" id="1_e0n7m"]
+[ext_resource type="Script" path="res://scripts/pieces/BishopChessPiece.gd" id="2_wtfs2"]
+
+[node name="Piece" instance=ExtResource("1_e0n7m")]
+script = ExtResource("2_wtfs2")

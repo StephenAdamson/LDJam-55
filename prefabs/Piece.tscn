@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cur62qcpqs2u7"]
+
+[ext_resource type="Texture2D" uid="uid://vtgb4unwlqs7" path="res://Sprites/pieces/pawn-strengths.jpg" id="1_xw6d3"]
+[ext_resource type="Script" path="res://scripts/ChessPiece .gd" id="2_ytk3o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3yoei"]
+size = Vector2(256, 256)
+
+[node name="Piece" type="Sprite2D"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_xw6d3")
+script = ExtResource("2_ytk3o")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_3yoei")
+
+[connection signal="piece_clicked" from="." to="." method="_on_piece_clicked"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://brp7ao4bpur5n"]
+
+[ext_resource type="PackedScene" uid="uid://cur62qcpqs2u7" path="res://prefabs/Piece.tscn" id="1_4vsij"]
+[ext_resource type="Script" path="res://scripts/pieces/PawnChessPiece.gd" id="2_q0tfk"]
+
+[node name="Piece" instance=ExtResource("1_4vsij")]
+script = ExtResource("2_q0tfk")

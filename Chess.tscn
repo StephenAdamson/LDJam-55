@@ -1,26 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr5jp5aamidbj"]
+[gd_scene load_steps=2 format=3 uid="uid://cr5jp5aamidbj"]
 
-[ext_resource type="Texture2D" uid="uid://vtgb4unwlqs7" path="res://Sprites/pieces/pawn-strengths.jpg" id="1_2ihpl"]
-[ext_resource type="Script" path="res://scripts/pieces/KingChessPiece.gd" id="1_8eqyq"]
-[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_eqvsv"]
-[ext_resource type="Script" path="res://scripts/Cursor.gd" id="4_x8cac"]
+[ext_resource type="PackedScene" uid="uid://gltd2umijqmq" path="res://prefabs/Square.tscn" id="4_3vapg"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="."]
-script = ExtResource("1_eqvsv")
-
-[node name="King" type="Sprite2D" parent="."]
-position = Vector2(529, 344)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_2ihpl")
-script = ExtResource("1_8eqyq")
-
-[node name="UI_cursor" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_x8cac")
-
-[connection signal="piece_clicked" from="King" to="King" method="_on_piece_clicked"]
+[node name="Square" parent="." instance=ExtResource("4_3vapg")]
+position = Vector2(289, 349)

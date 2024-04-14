@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cys4ir5xvv6tp"]
+
+[ext_resource type="PackedScene" uid="uid://cur62qcpqs2u7" path="res://prefabs/Piece.tscn" id="1_giyhk"]
+[ext_resource type="Script" path="res://scripts/pieces/RookChessPiece.gd" id="2_cppik"]
+
+[node name="Piece" instance=ExtResource("1_giyhk")]
+script = ExtResource("2_cppik")
