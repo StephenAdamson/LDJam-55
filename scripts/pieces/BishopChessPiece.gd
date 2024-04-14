@@ -1,4 +1,5 @@
-class_name BishopChessPiece extends ChessPiece
+class_name BishopChessPiece
+extends ChessPiece
 
 const WHITE_MOVE_DIRECTION = Vector2(0, 1)
 const BLACK_MOVE_DIRECTION = Vector2(0, -1)

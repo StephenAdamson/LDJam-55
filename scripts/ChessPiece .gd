@@ -26,8 +26,6 @@ func setPieceTexture(_texture: Texture):
 	self.texture = _texture
 
 func setPiecePosition(pos: Vector2i):
-	var old = calculatePiecePosition(currentGridPosition)
-	var new = calculatePiecePosition(pos)
 	currentGridPosition = pos
 	position = calculatePiecePosition(currentGridPosition)
 
@@ -35,16 +33,23 @@ func setPiecePosition(pos: Vector2i):
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			#var mouse_pos = get_local_mouse_position()
-			#if get_rect().has_point(mouse_pos):
-			emit_signal("piece_clicked")
+			var mouse_pos = get_local_mouse_position()
+			if get_rect().has_point(mouse_pos):
+				emit_signal("piece_clicked")
 
 func _on_piece_clicked():
 	if GameManager.instance:
-		if GameManager.is_players_turn():
+		GameManager.chosenPiece = self
+		if GameManager.currentGameState == GameManager.GAMESTATE.WHITE_PLAYING:
 			if has_method("calculate_moves"):
+				GameManager.clearBoardHighlights()
 				var moves = call("calculate_moves")
-				setPiecePosition(moves[randi() % moves.size()])
+				for move in moves:
+					for y in range(8):
+						for x in range(8):
+							if move.x == x and move.y == y:
+								GameManager.board[7-y][x].changeState(ChessSquare.SquareState.POSSIBLE)
+				#setPiecePosition(moves[randi() % moves.size()])
 
 
 func getPossibleMoves():

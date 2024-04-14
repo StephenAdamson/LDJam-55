@@ -1,8 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://cr5jp5aamidbj"]
-
-[ext_resource type="PackedScene" uid="uid://gltd2umijqmq" path="res://prefabs/Square.tscn" id="4_3vapg"]
+[gd_scene format=3 uid="uid://cr5jp5aamidbj"]
 
 [node name="Game" type="Node2D"]
-
-[node name="Square" parent="." instance=ExtResource("4_3vapg")]
-position = Vector2(289, 349)

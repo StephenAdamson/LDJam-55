@@ -1,24 +1,40 @@
-extends Node2D
+class_name ChessSquare
+extends Sprite2D
 
 @export var coordinates: Vector2i = Vector2i(0, 0)
 enum SquareState { IDLE, HOVERED, POSSIBLE }
 @export var currentState: SquareState = SquareState.IDLE
 
 func _on_area_2d_mouse_entered():
-	currentState = SquareState.HOVERED
-	update_sprite()
+	if currentState == SquareState.IDLE:
+		changeState(SquareState.HOVERED)
 
 func _on_area_2d_mouse_exited():
-	currentState = SquareState.IDLE
+	if currentState == SquareState.HOVERED:
+		changeState(SquareState.IDLE)
+	
+func changeState(newState: SquareState):
+	if newState == SquareState.HOVERED and currentState == SquareState.POSSIBLE:
+		return
+	currentState = newState
 	update_sprite()
+	
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and currentState == SquareState.POSSIBLE:
+			var mouse_pos = get_local_mouse_position()
+			if get_rect().has_point(mouse_pos):
+				GameManager.chosenPiece.setPiecePosition(Vector2i(coordinates.y,7-coordinates.x))
+				GameManager.clearBoardHighlights()
 
 func update_sprite():
 	match currentState:
 		SquareState.IDLE:
-			$Sprite2D.visible = false
+			self.visible = true
+			self.texture = load("res://Sprites/square_1.png")
 		SquareState.HOVERED:
-			$Sprite2D.visible = true
-			$Sprite2D.texture = load("res://Sprites/Pasted image.png")
+			self.visible = true
+			self.texture = load("res://Sprites/square_2.png")
 		SquareState.POSSIBLE:
-			$Sprite2D.visible = true
-			$Sprite2D.texture = load("res://Sprites/Pasted image 1.png")
+			self.visible = true
+			self.texture = load("res://Sprites/square_2.png")
