@@ -5,7 +5,8 @@ const WHITE_MOVE_DIRECTION = Vector2(0, 1)
 const BLACK_MOVE_DIRECTION = Vector2(0, -1)
 const MOVE_OFFSETS = [Vector2(-1, 1), Vector2(1, 1), Vector2(-1, -1), Vector2(1, -1)] # Diagonal moves
 
-var team = 0
+func _ready():
+	points_per_capture = 3
 
 func calculate_moves():
 	possibleSquares = []

@@ -5,3 +5,7 @@
 
 [node name="Piece" instance=ExtResource("1_svjvf")]
 script = ExtResource("2_vnoco")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(7.15256e-06, 0)
+scale = Vector2(1, 1)

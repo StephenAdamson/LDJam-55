@@ -5,7 +5,7 @@ enum ShopIconState { IDLE, HOVERED }
 var currentState: ShopIconState = ShopIconState.IDLE
 
 func _on_area_2d_mouse_entered():
-	if currentState == ShopIconState.IDLE:
+	if GameManager.currentGameState == GameManager.GAMESTATE.WHITE_PLAYING and currentState == ShopIconState.IDLE:
 		changeState(ShopIconState.HOVERED)
 
 func _on_area_2d_mouse_exited():
@@ -24,6 +24,7 @@ func _input(event):
 				changeState(ShopIconState.IDLE)
 				GameManager.currentGameState = GameManager.GAMESTATE.WHITE_BUYING
 				GameManager._spellBook.visible = true
+				GameManager.clearBoardHighlights()
 
 func update_sprite():
 	match currentState:

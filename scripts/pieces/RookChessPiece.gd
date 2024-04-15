@@ -5,7 +5,8 @@ const WHITE_MOVE_DIRECTION = Vector2(0, 1)
 const BLACK_MOVE_DIRECTION = Vector2(0, -1)
 const MOVE_OFFSETS = [Vector2(-1, 0), Vector2(1, 0), Vector2(0, 1), Vector2(0, -1)] # Vertical and horizontal moves
 
-var team = 0
+func _ready():
+	points_per_capture = 5
 
 func calculate_moves():
 	possibleSquares = []

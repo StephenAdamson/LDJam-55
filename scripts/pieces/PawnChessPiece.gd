@@ -5,8 +5,6 @@ const WHITE_MOVE_DIRECTION = Vector2(0, 1)
 const BLACK_MOVE_DIRECTION = Vector2(0, -1)
 const ATTACK_OFFSETS = [Vector2(-1, 1), Vector2(1, 1)] # Diagonal moves for capturing
 
-var team = 0
-
 func calculate_moves():
 	possibleSquares = []
 	var direction = WHITE_MOVE_DIRECTION if team == 0 else BLACK_MOVE_DIRECTION

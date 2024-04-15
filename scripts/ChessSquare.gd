@@ -6,11 +6,11 @@ enum SquareState { IDLE, HOVERED, POSSIBLE }
 var currentState: SquareState = SquareState.IDLE
 
 func _on_area_2d_mouse_entered():
-	if currentState == SquareState.IDLE and GameManager.currentGameState == GameManager.GAMESTATE.WHITE_PLAYING:
+	if currentState == SquareState.IDLE and (GameManager.currentGameState == GameManager.GAMESTATE.WHITE_PLAYING or (GameManager.currentGameState == GameManager.GAMESTATE.WHITE_SUMMON_SELECTION and coordinates.x >= 6)):
 		changeState(SquareState.HOVERED)
 
 func _on_area_2d_mouse_exited():
-	if currentState == SquareState.HOVERED and GameManager.currentGameState == GameManager.GAMESTATE.WHITE_PLAYING:
+	if currentState == SquareState.HOVERED and (GameManager.currentGameState == GameManager.GAMESTATE.WHITE_PLAYING or GameManager.currentGameState == GameManager.GAMESTATE.WHITE_SUMMON_SELECTION):
 		changeState(SquareState.IDLE)
 	
 func changeState(newState: SquareState):
@@ -30,7 +30,11 @@ func _input(event):
 				GameManager.chosenPiece.setPiecePosition(Vector2i(coordinates.y,7-coordinates.x))
 				if GameManager.chosenPiece.isKing :
 					GameManager.white_mana += 1
-				
+				GameManager.currentGameState = GameManager.GAMESTATE.BLACK_PLAYING
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and currentState == SquareState.HOVERED and GameManager.currentGameState == GameManager.GAMESTATE.WHITE_SUMMON_SELECTION:
+			GameManager.currentGameState = GameManager.GAMESTATE.WHITE_PLAYING
+			GameManager.buyingPiece.setPiecePosition(Vector2i(coordinates.y,7-coordinates.x))
+			changeState(SquareState.IDLE)
 
 func update_sprite():
 	match currentState:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://iyi5bjc215lo"]
+[gd_scene load_steps=7 format=3 uid="uid://iyi5bjc215lo"]
 
 [ext_resource type="Script" path="res://scripts/Spell_book.gd" id="1_mjo0n"]
 [ext_resource type="Texture2D" uid="uid://c83im5i1gkfag" path="res://Sprites/Spell_book.png" id="2_uqboc"]
 [ext_resource type="FontFile" uid="uid://dx16k1h8weqd8" path="res://Fonts/YuseiMagic-Regular.ttf" id="3_351fs"]
+[ext_resource type="Script" path="res://scripts/Wallet.gd" id="4_k2p1u"]
 
 [sub_resource type="GDScript" id="GDScript_afplb"]
 script/source = "extends Area2D
@@ -10,8 +11,6 @@ script/source = "extends Area2D
 func _input(event):
 	if event is InputEventMouseButton:
 		var mouse_pos = get_local_mouse_position()
-		print(get_node(\"CollisionShape2D\").shape.get_rect())
-		print(mouse_pos)
 		if GameManager.currentGameState == GameManager.GAMESTATE.WHITE_BUYING and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and get_node(\"CollisionShape2D\").shape.get_rect().has_point(mouse_pos):
 			GameManager.currentGameState = GameManager.GAMESTATE.WHITE_PLAYING
 			visible = false
@@ -45,6 +44,18 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_351fs")
 theme_override_font_sizes/font_size = 32
 text = "Summoning Spell Book"
+
+[node name="Wallet" type="Label" parent="."]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 116.0
+offset_right = 461.0
+offset_bottom = 140.0
+rotation = 0.0624787
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_351fs")
+text = "You Have 0 Mana"
+script = ExtResource("4_k2p1u")
 
 [node name="Pawn" type="Label" parent="."]
 layout_mode = 0

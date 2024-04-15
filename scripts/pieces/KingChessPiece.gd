@@ -6,10 +6,13 @@ const BLACK_MOVE_DIRECTION = Vector2(0, -1)
 const ATTACK_OFFSETS = [Vector2( - 1, 1), Vector2(1, 1), Vector2( - 1, -1), Vector2(1, -1)] # Diagonal moves for capturing
 const MOVE_OFFSETS = [Vector2(-1, 0), Vector2(1, 0), Vector2(0, 1), Vector2(0, -1)] # Vertical and horizontal moves
 
-var team = 0
-
 func _ready():
 	isKing = true
+	points_per_capture = 100
+	if team == 0:
+		self.texture = load("res://Sprites/pieces/pawn-strengths.jpg")
+	else:
+		self.texture = load("res://Sprites/pieces/pawn-strengths_b.jpg")
 
 func calculate_moves():
 	possibleSquares = []

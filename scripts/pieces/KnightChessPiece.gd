@@ -3,7 +3,8 @@ extends ChessPiece
 
 const MOVE_OFFSETS = [Vector2(-2, 1), Vector2(-1, 2), Vector2(1, 2), Vector2(2, 1), Vector2(2, -1), Vector2(1, -2), Vector2(-1, -2), Vector2(-2, -1)] # Knight's possible moves
 
-var team = 0
+func _ready():
+	points_per_capture = 3
 
 func calculate_moves():
 	possibleSquares = []
