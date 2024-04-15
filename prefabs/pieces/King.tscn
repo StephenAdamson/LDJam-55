@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgmdkr4y8bqgp"]
+[gd_scene load_steps=3 format=3 uid="uid://b03t1okhhc013"]
 
 [ext_resource type="PackedScene" uid="uid://cur62qcpqs2u7" path="res://prefabs/Piece.tscn" id="1_svjvf"]
 [ext_resource type="Script" path="res://scripts/pieces/KingChessPiece.gd" id="2_vnoco"]

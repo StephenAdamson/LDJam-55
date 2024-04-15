@@ -1,0 +1,128 @@
+[gd_scene load_steps=6 format=3 uid="uid://iyi5bjc215lo"]
+
+[ext_resource type="Script" path="res://scripts/Spell_book.gd" id="1_mjo0n"]
+[ext_resource type="Texture2D" uid="uid://c83im5i1gkfag" path="res://Sprites/Spell_book.png" id="2_uqboc"]
+[ext_resource type="FontFile" uid="uid://dx16k1h8weqd8" path="res://Fonts/YuseiMagic-Regular.ttf" id="3_351fs"]
+
+[sub_resource type="GDScript" id="GDScript_afplb"]
+script/source = "extends Area2D
+
+func _input(event):
+	if event is InputEventMouseButton:
+		var mouse_pos = get_local_mouse_position()
+		print(get_node(\"CollisionShape2D\").shape.get_rect())
+		print(mouse_pos)
+		if GameManager.currentGameState == GameManager.GAMESTATE.WHITE_BUYING and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and get_node(\"CollisionShape2D\").shape.get_rect().has_point(mouse_pos):
+			GameManager.currentGameState = GameManager.GAMESTATE.WHITE_PLAYING
+			visible = false
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rfbxi"]
+radius = 19.94
+
+[node name="SpellBook" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_mjo0n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(545, 322)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("2_uqboc")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 239.0
+offset_top = 58.0
+offset_right = 570.0
+offset_bottom = 106.0
+rotation = 0.0716701
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_351fs")
+theme_override_font_sizes/font_size = 32
+text = "Summoning Spell Book"
+
+[node name="Pawn" type="Label" parent="."]
+layout_mode = 0
+offset_left = 268.0
+offset_top = 169.0
+offset_right = 429.0
+offset_bottom = 204.0
+rotation = 0.0483431
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_351fs")
+theme_override_font_sizes/font_size = 24
+text = "Pawn : 2 mana"
+
+[node name="Knight" type="Label" parent="."]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 321.0
+offset_right = 442.0
+offset_bottom = 356.0
+rotation = 0.0266737
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_351fs")
+theme_override_font_sizes/font_size = 24
+text = "Knight : 6 mana"
+
+[node name="Bishop" type="Label" parent="."]
+layout_mode = 0
+offset_left = 599.0
+offset_top = 104.0
+offset_right = 777.0
+offset_bottom = 139.0
+rotation = -0.118888
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_351fs")
+theme_override_font_sizes/font_size = 24
+text = "Bishop : 6 mana"
+
+[node name="Rook" type="Label" parent="."]
+layout_mode = 0
+offset_left = 598.0
+offset_top = 228.0
+offset_right = 759.0
+offset_bottom = 263.0
+rotation = -0.106654
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_351fs")
+theme_override_font_sizes/font_size = 24
+text = "Rook : 10 mana"
+
+[node name="Queen" type="Label" parent="."]
+layout_mode = 0
+offset_left = 597.0
+offset_top = 354.0
+offset_right = 782.0
+offset_bottom = 389.0
+rotation = -0.0748276
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_351fs")
+theme_override_font_sizes/font_size = 24
+text = "Queen : 18 mana"
+
+[node name="Close" type="Label" parent="."]
+layout_mode = 0
+offset_left = 899.0
+offset_top = 39.0
+offset_right = 939.0
+offset_bottom = 63.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_351fs")
+text = "X"
+
+[node name="Area2D" type="Area2D" parent="Close"]
+position = Vector2(-899, -39)
+script = SubResource("GDScript_afplb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Close/Area2D"]
+position = Vector2(904, 52)
+shape = SubResource("CircleShape2D_rfbxi")
+
+[connection signal="mouse_entered" from="Close/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Close/Area2D" to="." method="_on_area_2d_mouse_exited"]

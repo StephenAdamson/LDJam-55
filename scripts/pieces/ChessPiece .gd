@@ -4,12 +4,14 @@ signal piece_clicked
 
 const OFFSET = Vector2(0, 0)
 
-@export var viewingAngle = 1.0
+var viewingAngle = 1
 
 @export var cost = 1
 
 var currentGridPosition = Vector2(-1,-1)
 var possibleSquares = [Vector2i(-1, -1)]
+
+var isKing = false
 
 func calculatePiecePosition(pos :Vector2i) -> Vector2:
 	var gridSize = 64
@@ -28,7 +30,6 @@ func setPieceTexture(_texture: Texture):
 func setPiecePosition(pos: Vector2i):
 	currentGridPosition = pos
 	position = calculatePiecePosition(currentGridPosition)
-
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -49,8 +50,6 @@ func _on_piece_clicked():
 						for x in range(8):
 							if move.x == x and move.y == y:
 								GameManager.board[7-y][x].changeState(ChessSquare.SquareState.POSSIBLE)
-				#setPiecePosition(moves[randi() % moves.size()])
-
 
 func getPossibleMoves():
 	return possibleSquares

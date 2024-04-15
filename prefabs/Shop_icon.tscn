@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://egvwkrxuqfwl"]
+
+[ext_resource type="PackedScene" uid="uid://cur62qcpqs2u7" path="res://prefabs/Piece.tscn" id="1_4nivn"]
+[ext_resource type="Texture2D" uid="uid://bj2448qapltyy" path="res://Sprites/Spell_icon.png" id="2_a2dfd"]
+[ext_resource type="Script" path="res://scripts/Shop_Icon.gd" id="3_7yx3f"]
+
+[node name="Shop_Icon" instance=ExtResource("1_4nivn")]
+position = Vector2(10, 12)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_a2dfd")
+script = ExtResource("3_7yx3f")
+
+[node name="Area2D" parent="." index="0"]
+position = Vector2(-66.6667, -80)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-10, 16.6667)
+scale = Vector2(0.999999, 0.999999)

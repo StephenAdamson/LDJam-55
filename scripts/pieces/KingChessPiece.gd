@@ -8,6 +8,9 @@ const MOVE_OFFSETS = [Vector2(-1, 0), Vector2(1, 0), Vector2(0, 1), Vector2(0, -
 
 var team = 0
 
+func _ready():
+	isKing = true
+
 func calculate_moves():
 	possibleSquares = []
 	var direction = WHITE_MOVE_DIRECTION if team == 0 else BLACK_MOVE_DIRECTION
