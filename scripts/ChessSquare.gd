@@ -8,9 +8,30 @@ var currentState: SquareState = SquareState.IDLE
 func _on_area_2d_mouse_entered():
 	if currentState == SquareState.IDLE and (GameManager.currentGameState == GameManager.GAMESTATE.WHITE_PLAYING or (GameManager.currentGameState == GameManager.GAMESTATE.WHITE_SUMMON_SELECTION and coordinates.x >= 6)):
 		changeState(SquareState.HOVERED)
+		if GameManager.getPieceAtSquare(Vector2i(coordinates.y,7-coordinates.x)):
+			print(GameManager.currentPortrait_holder)
+			for child in GameManager.currentPortrait_holder.get_children():
+				child.queue_free()
+			var _piece = GameManager.getPieceAtSquare(Vector2i(coordinates.y,7-coordinates.x))
+			if _piece is KingChessPiece:
+				GameManager.currentPortrait = GameManager.KingPortrait
+			elif _piece is QueenChessPiece:
+				GameManager.currentPortrait = GameManager.QueenPortrait
+			elif _piece is RookChessPiece:
+				GameManager.currentPortrait = GameManager.RookPortrait
+			elif _piece is BishopChessPiece:
+				GameManager.currentPortrait = GameManager.BishopPortrait
+			elif _piece is KnightChessPiece:
+				GameManager.currentPortrait = GameManager.KnightPortrait
+			elif _piece is PawnChessPiece:
+				GameManager.currentPortrait = GameManager.PawnPortrait
+			var _port = GameManager.currentPortrait.instantiate()
+			_port.scale = Vector2(0.41,0.41)
+			_port.position = Vector2(711,233)
+			GameManager.currentPortrait_holder.add_child(_port)
 
 func _on_area_2d_mouse_exited():
-	if currentState == SquareState.HOVERED and (GameManager.currentGameState == GameManager.GAMESTATE.WHITE_PLAYING or GameManager.currentGameState == GameManager.GAMESTATE.WHITE_SUMMON_SELECTION):
+	if currentState == SquareState.HOVERED:
 		changeState(SquareState.IDLE)
 	
 func changeState(newState: SquareState):
@@ -39,11 +60,11 @@ func _input(event):
 func update_sprite():
 	match currentState:
 		SquareState.IDLE:
-			self.visible = true
-			self.texture = load("res://Sprites/square_1.png")
+			self.scale = Vector2(1,1)
+			self.texture = load("res://Sprites/square_empty.png")
 		SquareState.HOVERED:
-			self.visible = true
-			self.texture = load("res://Sprites/square_2.png")
+			self.scale = Vector2(1,1)
+			self.texture = load("res://Sprites/frame_cut.png")
 		SquareState.POSSIBLE:
-			self.visible = true
-			self.texture = load("res://Sprites/square_2.png")
+			self.scale = Vector2(0.08,0.08)
+			self.texture = load("res://Sprites/possible.png")

@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvwcx0s78nmpq"]
+
+[ext_resource type="Texture2D" uid="uid://bxp3rgrebxobq" path="res://Sprites/Untitled1582.png" id="1_vkwvq"]
+[ext_resource type="Texture2D" uid="uid://5uhme4fu1bvk" path="res://Sprites/pieces/white/whiterookfront.png" id="2_pbt5e"]
+[ext_resource type="FontFile" uid="uid://dx16k1h8weqd8" path="res://Fonts/YuseiMagic-Regular.ttf" id="3_brm4k"]
+[ext_resource type="Texture2D" uid="uid://dkn8osoc6uaqe" path="res://Sprites/Untitled1585.png" id="4_jy4d8"]
+[ext_resource type="Texture2D" uid="uid://dbcbr6am0dw6w" path="res://Sprites/Untitled1586.png" id="5_j4ur4"]
+
+[node name="King" type="Node2D"]
+
+[node name="Untitled1582" type="Sprite2D" parent="."]
+position = Vector2(729.55, 375)
+scale = Vector2(-1, 1)
+texture = ExtResource("1_vkwvq")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 511.0
+offset_top = 420.0
+offset_right = 1188.0
+offset_bottom = 606.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.521569, 0.34902, 0, 1)
+theme_override_fonts/font = ExtResource("3_brm4k")
+theme_override_font_sizes/font_size = 128
+text = "Rook"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 271.0
+offset_top = 597.0
+offset_right = 1028.0
+offset_bottom = 789.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.521569, 0.34902, 0, 1)
+theme_override_fonts/font = ExtResource("3_brm4k")
+theme_override_font_sizes/font_size = 32
+text = "The joy and heart of the kingdom
+Yet solid and unyeilding againt strife
+They can keep the Wizard King
+protected from afar"
+horizontal_alignment = 1
+
+[node name="Untitled1586" type="Sprite2D" parent="."]
+position = Vector2(401, 159)
+rotation = -1.80816
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_j4ur4")
+
+[node name="Whiterookfront" type="Sprite2D" parent="."]
+position = Vector2(678, 193)
+scale = Vector2(0.535, 0.535)
+texture = ExtResource("2_pbt5e")
+
+[node name="Untitled1585" type="Sprite2D" parent="."]
+position = Vector2(931, 140)
+rotation = 1.14319
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("4_jy4d8")

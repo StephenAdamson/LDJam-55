@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8wfmmxbl0bjn"]
+
+[ext_resource type="Texture2D" uid="uid://bxp3rgrebxobq" path="res://Sprites/Untitled1582.png" id="1_m7d45"]
+[ext_resource type="Texture2D" uid="uid://kxkuq18gu3gq" path="res://Sprites/pieces/white/whitequeenfront.png" id="2_0gj8p"]
+[ext_resource type="FontFile" uid="uid://dx16k1h8weqd8" path="res://Fonts/YuseiMagic-Regular.ttf" id="4_qg6ri"]
+[ext_resource type="Texture2D" uid="uid://dkn8osoc6uaqe" path="res://Sprites/Untitled1585.png" id="5_rhrdb"]
+[ext_resource type="Texture2D" uid="uid://dbcbr6am0dw6w" path="res://Sprites/Untitled1586.png" id="5_ri617"]
+
+[node name="King" type="Node2D"]
+
+[node name="Untitled1582" type="Sprite2D" parent="."]
+position = Vector2(729.55, 375)
+scale = Vector2(-1, 1)
+texture = ExtResource("1_m7d45")
+
+[node name="Whitequeenfront" type="Sprite2D" parent="."]
+position = Vector2(660, 165)
+scale = Vector2(0.545, 0.545)
+texture = ExtResource("2_0gj8p")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 335.0
+offset_top = 418.0
+offset_right = 1058.0
+offset_bottom = 604.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.521569, 0.34902, 0, 1)
+theme_override_fonts/font = ExtResource("4_qg6ri")
+theme_override_font_sizes/font_size = 128
+text = "Witch Queen"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 307.0
+offset_top = 611.0
+offset_right = 1064.0
+offset_bottom = 803.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.521569, 0.34902, 0, 1)
+theme_override_fonts/font = ExtResource("4_qg6ri")
+theme_override_font_sizes/font_size = 32
+text = "As powerful as the Wizard King is...
+All know who wields the true power"
+horizontal_alignment = 1
+
+[node name="Untitled1586" type="Sprite2D" parent="."]
+position = Vector2(462, 207)
+rotation = 0.666716
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("5_ri617")
+
+[node name="Untitled1585" type="Sprite2D" parent="."]
+position = Vector2(838, 202)
+rotation = -0.951204
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_rhrdb")

@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cys4ir5xvv6tp"]
+[gd_scene load_steps=4 format=3 uid="uid://cqkgywmhh1r3l"]
 
-[ext_resource type="PackedScene" uid="uid://cur62qcpqs2u7" path="res://prefabs/Piece.tscn" id="1_giyhk"]
-[ext_resource type="Script" path="res://scripts/pieces/RookChessPiece.gd" id="2_cppik"]
+[ext_resource type="PackedScene" uid="uid://cur62qcpqs2u7" path="res://prefabs/Piece.tscn" id="1_iub2p"]
+[ext_resource type="Texture2D" uid="uid://5uhme4fu1bvk" path="res://Sprites/pieces/white/whiterookfront.png" id="2_04tlk"]
+[ext_resource type="Script" path="res://scripts/pieces/RookChessPiece.gd" id="3_10vgf"]
 
-[node name="Piece" instance=ExtResource("1_giyhk")]
-script = ExtResource("2_cppik")
+[node name="Piece" instance=ExtResource("1_iub2p")]
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("2_04tlk")
+script = ExtResource("3_10vgf")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(7.15256e-06, 0)

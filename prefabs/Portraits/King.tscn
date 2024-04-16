@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj5cb8wly7miq"]
+
+[ext_resource type="Texture2D" uid="uid://bxp3rgrebxobq" path="res://Sprites/Untitled1582.png" id="1_qsgtn"]
+[ext_resource type="Texture2D" uid="uid://dsi4nugv357mt" path="res://Sprites/Untitled1584.png" id="2_woabl"]
+[ext_resource type="FontFile" uid="uid://dx16k1h8weqd8" path="res://Fonts/YuseiMagic-Regular.ttf" id="3_hmf16"]
+[ext_resource type="Texture2D" uid="uid://wyapantkbafq" path="res://Sprites/pieces/white/whitewizardfront.png" id="3_vosou"]
+[ext_resource type="Texture2D" uid="uid://dbcbr6am0dw6w" path="res://Sprites/Untitled1586.png" id="5_2hw3c"]
+
+[node name="King" type="Node2D"]
+
+[node name="Untitled1582" type="Sprite2D" parent="."]
+position = Vector2(729.55, 375)
+scale = Vector2(-1, 1)
+texture = ExtResource("1_qsgtn")
+
+[node name="Untitled1584" type="Sprite2D" parent="."]
+position = Vector2(775, -110)
+scale = Vector2(0.47, 0.47)
+texture = ExtResource("2_woabl")
+
+[node name="Whitewizardfront" type="Sprite2D" parent="."]
+position = Vector2(669, 133)
+scale = Vector2(0.455, 0.455)
+texture = ExtResource("3_vosou")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 319.0
+offset_top = 422.0
+offset_right = 996.0
+offset_bottom = 608.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.521569, 0.34902, 0, 1)
+theme_override_fonts/font = ExtResource("3_hmf16")
+theme_override_font_sizes/font_size = 128
+text = "Wizard King"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 271.0
+offset_top = 597.0
+offset_right = 1028.0
+offset_bottom = 789.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.521569, 0.34902, 0, 1)
+theme_override_fonts/font = ExtResource("3_hmf16")
+theme_override_font_sizes/font_size = 32
+text = "The Wizard King is an ancient being
+long thought to be eternal
+How will he fair against
+the upcoming rival wizard"
+horizontal_alignment = 1
+
+[node name="Untitled1586" type="Sprite2D" parent="."]
+position = Vector2(472, 205)
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("5_2hw3c")

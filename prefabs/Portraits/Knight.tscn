@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://dr4a71abfmf65"]
+
+[ext_resource type="Texture2D" uid="uid://bxp3rgrebxobq" path="res://Sprites/Untitled1582.png" id="1_jm5r0"]
+[ext_resource type="FontFile" uid="uid://dx16k1h8weqd8" path="res://Fonts/YuseiMagic-Regular.ttf" id="4_6mvwb"]
+[ext_resource type="Texture2D" uid="uid://deviiwq6xai35" path="res://Sprites/pieces/white/whiteknightfront_20240415224556.png" id="4_wforj"]
+[ext_resource type="Texture2D" uid="uid://dkn8osoc6uaqe" path="res://Sprites/Untitled1585.png" id="5_4r28r"]
+[ext_resource type="Texture2D" uid="uid://dbcbr6am0dw6w" path="res://Sprites/Untitled1586.png" id="5_a5fep"]
+
+[node name="King" type="Node2D"]
+
+[node name="Untitled1582" type="Sprite2D" parent="."]
+position = Vector2(729.55, 375)
+scale = Vector2(-1, 1)
+texture = ExtResource("1_jm5r0")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 509.0
+offset_top = 419.0
+offset_right = 1186.0
+offset_bottom = 605.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.521569, 0.34902, 0, 1)
+theme_override_fonts/font = ExtResource("4_6mvwb")
+theme_override_font_sizes/font_size = 128
+text = "Knight"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 271.0
+offset_top = 597.0
+offset_right = 1028.0
+offset_bottom = 789.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.521569, 0.34902, 0, 1)
+theme_override_fonts/font = ExtResource("4_6mvwb")
+theme_override_font_sizes/font_size = 32
+text = "A mounted knight of the realm
+He protects the royals with
+leaps of incredible speed"
+horizontal_alignment = 1
+
+[node name="Untitled1586" type="Sprite2D" parent="."]
+position = Vector2(477, 138)
+rotation = -1.61792
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_a5fep")
+
+[node name="Whiteknightfront20240415224556" type="Sprite2D" parent="."]
+position = Vector2(616, 135)
+scale = Vector2(0.47, 0.47)
+texture = ExtResource("4_wforj")
+
+[node name="Untitled1585" type="Sprite2D" parent="."]
+position = Vector2(605, 89)
+rotation = -0.471239
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("5_4r28r")

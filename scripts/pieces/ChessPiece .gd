@@ -2,13 +2,14 @@ class_name ChessPiece
 extends Sprite2D
 signal piece_clicked
 
-const OFFSET = Vector2(0, 0)
+const OFFSET = Vector2(232, 119)
 
 var viewingAngle = 1
 var points_per_capture = 1
 
-var currentGridPosition = Vector2(-1,-1)
+var currentGridPosition = Vector2i(-1,-1)
 var possibleSquares = [Vector2i(-1, -1)]
+var possibleCaptures = [Vector2i(-1, -1)]
 
 var isKing = false
 
@@ -57,6 +58,7 @@ func _input(event):
 						GameManager.clearBoardHighlights()
 						if isKing:
 							GameManager.currentGameState = GameManager.GAMESTATE.WIN
+						GameManager.black_pieces.erase(self)
 						queue_free()
 
 func getPossibleMoves():

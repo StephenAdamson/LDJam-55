@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5mx833dyt27t"]
+[gd_scene load_steps=4 format=3 uid="uid://c5vwdj7dt3xvj"]
 
 [ext_resource type="PackedScene" uid="uid://cur62qcpqs2u7" path="res://prefabs/Piece.tscn" id="1_322pw"]
 [ext_resource type="Script" path="res://scripts/pieces/KnightChessPiece.gd" id="2_rd43y"]
+[ext_resource type="Texture2D" uid="uid://deviiwq6xai35" path="res://Sprites/pieces/white/whiteknightfront_20240415224556.png" id="2_ya8kr"]
 
 [node name="Piece" instance=ExtResource("1_322pw")]
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("2_ya8kr")
 script = ExtResource("2_rd43y")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(7.15256e-06, 0)

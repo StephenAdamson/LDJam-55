@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b03t1okhhc013"]
+[gd_scene load_steps=4 format=3 uid="uid://b03t1okhhc013"]
 
 [ext_resource type="PackedScene" uid="uid://cur62qcpqs2u7" path="res://prefabs/Piece.tscn" id="1_svjvf"]
+[ext_resource type="Texture2D" uid="uid://wyapantkbafq" path="res://Sprites/pieces/white/whitewizardfront.png" id="2_e8gr7"]
 [ext_resource type="Script" path="res://scripts/pieces/KingChessPiece.gd" id="2_vnoco"]
 
 [node name="Piece" instance=ExtResource("1_svjvf")]
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("2_e8gr7")
 script = ExtResource("2_vnoco")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(7.15256e-06, 0)
-scale = Vector2(1, 1)

@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://btj0363j3o8h6"]
+
+[ext_resource type="Texture2D" uid="uid://bxp3rgrebxobq" path="res://Sprites/Untitled1582.png" id="1_qsgtn"]
+[ext_resource type="Texture2D" uid="uid://dvne5niov3xiw" path="res://Sprites/pieces/white/whitepawnfront.png" id="2_0w4ua"]
+[ext_resource type="FontFile" uid="uid://dx16k1h8weqd8" path="res://Fonts/YuseiMagic-Regular.ttf" id="3_hmf16"]
+[ext_resource type="Texture2D" uid="uid://dkn8osoc6uaqe" path="res://Sprites/Untitled1585.png" id="4_sjdxr"]
+[ext_resource type="Texture2D" uid="uid://dbcbr6am0dw6w" path="res://Sprites/Untitled1586.png" id="5_l5fuh"]
+
+[node name="Pawn Portrait" type="Node2D"]
+
+[node name="Untitled1582" type="Sprite2D" parent="."]
+position = Vector2(729.55, 375)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("1_qsgtn")
+
+[node name="Whitepawnfront" type="Sprite2D" parent="."]
+position = Vector2(681, 80)
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("2_0w4ua")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 507.0
+offset_top = 427.0
+offset_right = 805.0
+offset_bottom = 613.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.521569, 0.34902, 0, 1)
+theme_override_fonts/font = ExtResource("3_hmf16")
+theme_override_font_sizes/font_size = 128
+text = "PAWN"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 389.0
+offset_top = 604.0
+offset_right = 932.0
+offset_bottom = 796.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.521569, 0.34902, 0, 1)
+theme_override_fonts/font = ExtResource("3_hmf16")
+theme_override_font_sizes/font_size = 32
+text = "The Wizard Kings humble soldier
+Ready to charge headfirst into battle"
+horizontal_alignment = 1
+
+[node name="Untitled1585" type="Sprite2D" parent="."]
+position = Vector2(801, 154)
+scale = Vector2(0.38, 0.38)
+texture = ExtResource("4_sjdxr")
+
+[node name="Untitled1586" type="Sprite2D" parent="."]
+position = Vector2(497, 232)
+scale = Vector2(0.345, 0.345)
+texture = ExtResource("5_l5fuh")

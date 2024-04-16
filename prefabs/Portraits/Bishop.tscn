@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://nx487p0pq7ak"]
+
+[ext_resource type="Texture2D" uid="uid://bxp3rgrebxobq" path="res://Sprites/Untitled1582.png" id="1_502ym"]
+[ext_resource type="Texture2D" uid="uid://bc3ghlerry0l3" path="res://Sprites/pieces/white/whitebishopfront2.png" id="2_irrf4"]
+[ext_resource type="FontFile" uid="uid://dx16k1h8weqd8" path="res://Fonts/YuseiMagic-Regular.ttf" id="4_5a3ny"]
+[ext_resource type="Texture2D" uid="uid://dbcbr6am0dw6w" path="res://Sprites/Untitled1586.png" id="5_6dvxy"]
+[ext_resource type="Texture2D" uid="uid://dkn8osoc6uaqe" path="res://Sprites/Untitled1585.png" id="5_46ilj"]
+
+[node name="King" type="Node2D"]
+
+[node name="Untitled1582" type="Sprite2D" parent="."]
+position = Vector2(729.55, 375)
+scale = Vector2(-1, 1)
+texture = ExtResource("1_502ym")
+
+[node name="Whitebishopfront2" type="Sprite2D" parent="Untitled1582"]
+position = Vector2(67.55, -323.705)
+rotation = 3.14159
+scale = Vector2(0.455, -0.455)
+texture = ExtResource("2_irrf4")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 487.0
+offset_top = 413.0
+offset_right = 1164.0
+offset_bottom = 599.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.521569, 0.34902, 0, 1)
+theme_override_fonts/font = ExtResource("4_5a3ny")
+theme_override_font_sizes/font_size = 128
+text = "Bishop
+"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 271.0
+offset_top = 597.0
+offset_right = 1028.0
+offset_bottom = 789.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.521569, 0.34902, 0, 1)
+theme_override_fonts/font = ExtResource("4_5a3ny")
+theme_override_font_sizes/font_size = 32
+text = "The religious leader of these lands
+He keeps the peasants in
+line for the Wizard king"
+horizontal_alignment = 1
+
+[node name="Untitled1586" type="Sprite2D" parent="."]
+position = Vector2(494, 160)
+scale = Vector2(0.175, 0.175)
+texture = ExtResource("5_6dvxy")
+
+[node name="Untitled1585" type="Sprite2D" parent="."]
+position = Vector2(831, 136)
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("5_46ilj")

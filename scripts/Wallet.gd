@@ -6,4 +6,9 @@ func _process(delta):
 	time = time + delta
 	if time > 0.0416:
 		time = 0
-		text = "You have " + str(GameManager.white_mana) + " mana"
+		if GameManager.currentGameState == GameManager.GAMESTATE.WIN:
+			text = "WINNER!"
+		elif GameManager.currentGameState == GameManager.GAMESTATE.LOSE:
+			text = "You lose!  :(  womp womp"
+		else:
+			text = "You have " + str(GameManager.white_mana) + " mana"

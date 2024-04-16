@@ -1,3 +1,51 @@
-[gd_scene format=3 uid="uid://cr5jp5aamidbj"]
+[gd_scene load_steps=7 format=3 uid="uid://cr5jp5aamidbj"]
+
+[ext_resource type="Texture2D" uid="uid://dfwb7qscjqg1x" path="res://Sprites/corner.png" id="1_i2s8f"]
+[ext_resource type="Texture2D" uid="uid://dsdypcpp1lbse" path="res://Sprites/Untitled1592_20240415230225.png" id="2_sr10y"]
+[ext_resource type="FontFile" uid="uid://dx16k1h8weqd8" path="res://Fonts/YuseiMagic-Regular.ttf" id="2_ycl0y"]
+[ext_resource type="Script" path="res://scripts/Wallet.gd" id="3_pegs7"]
+[ext_resource type="AudioStream" uid="uid://d28ehduhd1oep" path="res://Music/Wizzzlong.mp3" id="4_f6wig"]
+[ext_resource type="Texture2D" uid="uid://bkf6ry73pxanw" path="res://Sprites/Untitled1596_20240415224429.png" id="5_al83r"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Corner" type="Sprite2D" parent="."]
+position = Vector2(176.64, 63.41)
+scale = Vector2(0.51, 0.51)
+texture = ExtResource("1_i2s8f")
+
+[node name="Untitled159620240415224429" type="Sprite2D" parent="."]
+z_index = -1000
+position = Vector2(591, 313)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("5_al83r")
+
+[node name="Untitled159220240415230225" type="Sprite2D" parent="."]
+z_index = -500
+position = Vector2(496, 371)
+scale = Vector2(0.52, 0.52)
+texture = ExtResource("2_sr10y")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 7.0
+offset_top = 3.0
+offset_right = 47.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0.756863, 0.635294, 0, 1)
+theme_override_fonts/font = ExtResource("2_ycl0y")
+script = ExtResource("3_pegs7")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 7.0
+offset_top = 35.0
+offset_right = 322.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(0.756863, 0.635294, 0, 1)
+theme_override_fonts/font = ExtResource("2_ycl0y")
+text = "Move the Wizard King to gain more
+mana to spend on summoning spells"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_f6wig")
+volume_db = 17.334
+autoplay = true

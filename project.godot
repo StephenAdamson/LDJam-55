@@ -20,6 +20,13 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scripts/GameManager.gd"
 
+[display]
+
+window/size/viewport_width=1200
+window/size/viewport_height=720
+window/size/resizable=false
+window/stretch/mode="canvas_items"
+
 [layer_names]
 
 2d_physics/layer_1="Background"
