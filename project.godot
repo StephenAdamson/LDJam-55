@@ -10,11 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Ld Jam-55"
+config/name="Chess 2"
+config/description="Chess but you have to summon the pieces"
+config/version="0.8"
 run/main_scene="res://Chess.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/bg_color=Color(0.0705882, 0.152941, 0.188235, 1)
-config/icon="res://icon.svg"
+config/icon="res://Sprites/pieces/white/whitewizardfront.png"
 
 [autoload]
 
