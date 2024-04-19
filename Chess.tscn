@@ -48,4 +48,3 @@ mana to spend on summoning spells"
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_f6wig")
 volume_db = 17.334
-autoplay = true

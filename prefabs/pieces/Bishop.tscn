@@ -11,4 +11,3 @@ script = ExtResource("2_wtfs2")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(0, 49.7777)
-scale = Vector2(1, 1)

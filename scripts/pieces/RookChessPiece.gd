@@ -7,6 +7,10 @@ const MOVE_OFFSETS = [Vector2(-1, 0), Vector2(1, 0), Vector2(0, 1), Vector2(0, -
 
 func _ready():
 	points_per_capture = 5
+	if team == 0:
+		self.texture = load("res://Sprites/pieces/white/whiterookfront.png")
+	else:
+		self.texture = load("res://Sprites/pieces/black/blackrookfront_20240415224655.png")
 
 func calculate_moves():
 	possibleSquares = []

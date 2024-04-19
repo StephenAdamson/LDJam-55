@@ -153,7 +153,6 @@ func black_ai():
 					_piece.setPiecePosition(getSpawnableZonesBlack()[randi() % getSpawnableZonesBlack().size()])
 					black_pieces.append(_piece)
 					add_child(_piece)
-					
 			currentGameState = GAMESTATE.WHITE_PLAYING
 		else:
 			black_move_a_piece()
@@ -190,6 +189,7 @@ func black_move_a_piece():
 			if _toCapture.isKing:
 				currentGameState = GAMESTATE.LOSE
 			_toCapture.queue_free()
+			currentGameState = GAMESTATE.WHITE_PLAYING
 			break
 		currentGameState = GAMESTATE.WHITE_PLAYING
 		if _piece.isKing:
