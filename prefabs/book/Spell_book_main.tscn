@@ -55,10 +55,10 @@ text = "Summoning Spell Book"
 [node name="Wallet" type="Label" parent="."]
 z_index = 501
 layout_mode = 0
-offset_left = 335.0
-offset_top = 116.0
-offset_right = 461.0
-offset_bottom = 140.0
+offset_left = 314.0
+offset_top = 112.0
+offset_right = 440.0
+offset_bottom = 136.0
 rotation = 0.0624787
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_351fs")

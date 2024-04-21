@@ -24,6 +24,8 @@ var BishopPortrait : PackedScene = load("res://prefabs/Portraits/Bishop.tscn")
 var RookPortrait : PackedScene = load("res://prefabs/Portraits/Rook.tscn")
 var PawnPortrait : PackedScene = load("res://prefabs/Portraits/Pawn.tscn")
 
+var complete_turns = 0
+
 var board = []
 enum GAMESTATE {
 	WHITE_BUYING, 
@@ -49,6 +51,7 @@ var _shopIcon
 var white_mana = 0
 var black_mana = 0
 
+var white_pieces = []
 var black_pieces = []
 
 var chances = [1,1,2,2,2,2,2,2,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5]
@@ -66,7 +69,8 @@ func _ready():
 			square.coordinates = Vector2i(y, x)
 			board[y].append(square)
 			add_child(board[y][x])
-	chosenPiece = spawn_white_king_piece()
+	white_pieces.append(spawn_white_king_piece())
+	chosenPiece = white_pieces[0]
 	black_pieces.append(spawn_black_king_piece())
 	
 	_shopIcon = ShopIcon.instantiate()
@@ -106,94 +110,143 @@ func _ready():
 func _process(delta):
 	if currentGameState == GAMESTATE.WHITE_SUMMON_SELECTION and buyingPiece:
 		buyingPiece.position = buyingPiece.get_global_mouse_position()
-	if currentGameState == GAMESTATE.BLACK_PLAYING:
+	elif currentGameState == GAMESTATE.BLACK_PLAYING:
 		black_ai()
 
 func black_ai():
-	var decision = randi() % 7
+	var decision
 	for _piece in black_pieces:
 		if _piece.calculate_captures().size()>0:
 			decision=10
-		
-	if black_mana >= 2 and getSpawnableZonesBlack().size()>0:
-		decision = randi() % 7
+			break
+	if decision != 10 and black_mana >= 2 and getSpawnableZonesBlack().size()>0:
+		decision = randi() % 4
 		if decision == 0 :
-			var hasBought = 0
-			while hasBought == 0:
-				var selection = chances[randi() % chances.size()]
-				var _piece
-				match selection:
-					1:
-						if black_mana >= 2:
-							black_mana -= 2
-							hasBought = selection
-							_piece = Pawn.instantiate()
-					2:
-						if black_mana >= 6:
-							black_mana -= 6
-							hasBought = selection
-							_piece = Knight.instantiate()
-					3:
-						if black_mana >= 6:
-							black_mana -= 6
-							hasBought = selection
-							_piece = Bishop.instantiate()
-					4:
-						if black_mana >= 10:
-							black_mana -= 10
-							hasBought = selection
-							_piece = Rook.instantiate()
-					5:
-						if black_mana >= 18:
-							black_mana -= 18
-							hasBought = selection
-							_piece = Queen.instantiate()
-				if hasBought > 0:
-					_piece.team = 1
-					_piece.setPiecePosition(getSpawnableZonesBlack()[randi() % getSpawnableZonesBlack().size()])
-					black_pieces.append(_piece)
-					add_child(_piece)
-			currentGameState = GAMESTATE.WHITE_PLAYING
+			black_summon()
 		else:
 			black_move_a_piece()
 	else:
 		black_move_a_piece()
+		
+func black_summon():
+	var hasBought = 0
+	while hasBought == 0:
+		var selection = chances[randi() % chances.size()]
+		var _piece
+		match selection:
+			1:
+				if black_mana >= 2:
+					black_mana -= 2
+					hasBought = selection
+					_piece = Pawn.instantiate()
+			2:
+				if black_mana >= 6:
+					black_mana -= 6
+					hasBought = selection
+					_piece = Knight.instantiate()
+			3:
+				if black_mana >= 6:
+					black_mana -= 6
+					hasBought = selection
+					_piece = Bishop.instantiate()
+			4:
+				if black_mana >= 10:
+					black_mana -= 10
+					hasBought = selection
+					_piece = Rook.instantiate()
+			5:
+				if black_mana >= 18:
+					black_mana -= 18
+					hasBought = selection
+					_piece = Queen.instantiate()
+		if hasBought > 0:
+			_piece.team = 1
+			_piece.setPiecePosition(getSpawnableZonesBlack()[randi() % getSpawnableZonesBlack().size()])
+			black_pieces.append(_piece)
+			add_child(_piece)
+	currentGameState = GAMESTATE.WHITE_PLAYING
+	complete_turns += 1
 
 func black_move_a_piece():
-	var canMove = false
-	while !canMove:
-		var _piece = black_pieces[randi() % black_pieces.size()]
-		var _moves = _piece.calculate_captures()
+	var best_capture
+	var _moves
+	var _largest_total = 0
+	var _capturing_piece
+	for _piece in black_pieces:
+		_moves = _piece.calculate_captures()
 		if _moves.size() == 0:
-			_moves = _piece.calculate_moves()
-		var _possible = []
-		for _sq in getAvailibleZones():
-			if _sq in _moves:
-				_possible.append(_sq)
-		if _possible.size() > 0:
-			canMove = true
-		else:
 			continue
-		if _piece.calculate_captures().size() == 0:
-			_piece.setPiecePosition(_possible[randi() % _possible.size()]);
 		else:
-			var _largest = 0
-			var _toCapture
-			for __piece in _possible:
-				if getPieceAtSquare(__piece).points_per_capture > _largest:
-					var ___piece = getPieceAtSquare(__piece)
-					_largest = ___piece.points_per_capture
-					_toCapture = ___piece
-			_piece.setPiecePosition(_toCapture.currentGridPosition);
-			black_mana += _toCapture.points_per_capture
-			if _toCapture.isKing:
-				currentGameState = GAMESTATE.LOSE
-			_toCapture.queue_free()
+			var _largest_for_this_piece = 0
+			var __piece
+			for square_of_capture in _moves:
+				if getPieceAtSquare(square_of_capture).points_per_capture > _largest_for_this_piece:
+					__piece = getPieceAtSquare(square_of_capture)
+					_largest_for_this_piece = __piece.points_per_capture
+			if _largest_for_this_piece > _largest_total:
+				_largest_total = _largest_for_this_piece
+				_capturing_piece = _piece
+	if _capturing_piece:
+		_moves = _capturing_piece.calculate_captures()
+		var _largest_for_this_piece = 0
+		var __piece
+		for square_of_capture in _moves:
+			if getPieceAtSquare(square_of_capture).points_per_capture > _largest_for_this_piece:
+				__piece = getPieceAtSquare(square_of_capture)
+				_largest_for_this_piece = __piece.points_per_capture
+		_capturing_piece.setPiecePosition(__piece.currentGridPosition)
+		black_mana += __piece.points_per_capture
+
+		black_mana += __piece.points_per_capture
+		white_pieces.erase(__piece)
+		var gameover = __piece.isKing
+		if gameover:
+			currentGameState = GAMESTATE.LOSE
+		__piece.queue_free()
+		if !gameover:
 			currentGameState = GAMESTATE.WHITE_PLAYING
-			break
-		currentGameState = GAMESTATE.WHITE_PLAYING
-		if _piece.isKing:
-			black_mana +=1
+		complete_turns += 1
+	else:
+		var canMove = false
+		var count = 0
+		while !canMove:
+			count +=1
+			if count > 500:
+				currentGameState = GAMESTATE.WIN
+				break
+			var _piece = black_pieces[randi() % black_pieces.size()]
+			_moves = _piece.calculate_moves()
+			var _possible = []
+			for _sq in getAvailibleZones():
+				if _sq in _moves:
+					_possible.append(_sq)
+			var new_move
+			if _possible.size() > 0:
+				new_move = _possible[randi() % _possible.size()]
+				var will_be_captured = false
+				for __piece in white_pieces:
+					if __piece.has_method("calculate_moves"):
+						var moves = __piece.call("calculate_moves")
+						for move in moves:
+							if move.x == new_move.x and move.y == new_move.y:
+								will_be_captured = true
+								break
+					if __piece.has_method("calculate_captures"):
+						var moves = __piece.call("calculate_captures")
+						for move in moves:
+							if move.x == new_move.x and move.y == new_move.y:
+								will_be_captured = true
+								break
+				if !will_be_captured:
+					canMove = true
+				else:
+					continue
+			else:
+				continue
+			_piece.setPiecePosition(new_move);
+			black_mana += 1
+			currentGameState = GAMESTATE.WHITE_PLAYING
+			complete_turns += 1
 
 func spawn_white_king_piece():
 	var king_piece = King.instantiate()
@@ -217,24 +270,6 @@ func clearBoardHighlights():
 func getSpawnableZonesBlack():
 	var spawnable_slots = []
 	for row in range(7, 5, -1):
-		for col in range(8):
-			spawnable_slots.append(Vector2i(col, row))
-	var found_slots = []
-	for _piece in get_children_of_type_chess_piece():
-		for slot in spawnable_slots:
-			if slot == _piece.currentGridPosition:
-				found_slots.append(slot)
-	var i = 0
-	while i < spawnable_slots.size():
-		if found_slots.has(spawnable_slots[i]):
-			spawnable_slots.remove_at(i)
-		else:
-			i += 1
-	return spawnable_slots
-	
-func getSpawnableZonesWhite():
-	var spawnable_slots = []
-	for row in range(2):
 		for col in range(8):
 			spawnable_slots.append(Vector2i(col, row))
 	var found_slots = []

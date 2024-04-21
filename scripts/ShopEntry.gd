@@ -18,5 +18,6 @@ func _input(event):
 			GameManager.currentGameState = GameManager.GAMESTATE.WHITE_SUMMON_SELECTION
 			var _piece = Piece.instantiate()
 			_piece.team = 0
+			GameManager.white_pieces.append(_piece)
 			GameManager.add_child(_piece)
 			GameManager.buyingPiece = _piece

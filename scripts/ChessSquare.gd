@@ -37,8 +37,9 @@ func _on_area_2d_mouse_exited():
 func changeState(newState: SquareState):
 	if newState == SquareState.HOVERED and currentState == SquareState.POSSIBLE:
 		return
-	currentState = newState
-	update_sprite()
+	if newState != currentState:
+		currentState = newState
+		update_sprite()
 	
 func _input(event):
 	if event is InputEventMouseButton:
@@ -52,8 +53,10 @@ func _input(event):
 				if GameManager.chosenPiece.isKing :
 					GameManager.white_mana += 1
 				GameManager.currentGameState = GameManager.GAMESTATE.BLACK_PLAYING
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and currentState == SquareState.HOVERED and GameManager.currentGameState == GameManager.GAMESTATE.WHITE_SUMMON_SELECTION:
+				GameManager.complete_turns += 1
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and currentState == SquareState.HOVERED and GameManager.currentGameState == GameManager.GAMESTATE.WHITE_SUMMON_SELECTION and !GameManager.getPieceAtSquare(Vector2i(coordinates.y,7-coordinates.x)):
 			GameManager.currentGameState = GameManager.GAMESTATE.BLACK_PLAYING
+			GameManager.complete_turns += 1
 			GameManager.buyingPiece.setPiecePosition(Vector2i(coordinates.y,7-coordinates.x))
 			changeState(SquareState.IDLE)
 

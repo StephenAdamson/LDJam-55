@@ -41,9 +41,16 @@ func _input(event):
 				if GameManager.instance:
 					GameManager.chosenPiece = self
 					if GameManager.currentGameState == GameManager.GAMESTATE.WHITE_PLAYING:
+						GameManager.clearBoardHighlights()
 						if has_method("calculate_moves"):
-							GameManager.clearBoardHighlights()
 							var moves = call("calculate_moves")
+							for move in moves:
+								for y in range(8):
+									for x in range(8):
+										if move.x == x and move.y == y:
+											GameManager.board[7-y][x].changeState(ChessSquare.SquareState.POSSIBLE)
+						if has_method("calculate_captures"):
+							var moves = call("calculate_captures")
 							for move in moves:
 								for y in range(8):
 									for x in range(8):

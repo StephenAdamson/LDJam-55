@@ -11,4 +11,4 @@ func _process(delta):
 		elif GameManager.currentGameState == GameManager.GAMESTATE.LOSE:
 			text = "You lose!  :(  womp womp"
 		else:
-			text = "You have " + str(GameManager.white_mana) + " mana"
+			text = "Turn " + str(floor(GameManager.complete_turns/2)+1) + ". You have " + str(GameManager.white_mana) + " mana"
